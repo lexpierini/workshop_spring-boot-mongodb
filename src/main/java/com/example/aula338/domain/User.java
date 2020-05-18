@@ -2,10 +2,15 @@ package com.example.aula338.domain;
 
 import java.io.Serializable;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "user") //Indique qu'il s'agit d'une collection MongoDB.
 public class User implements Serializable {
 	// Pour que les objets puissent être convertis en bits pour être trafiqués sur le réseau et enregistrés dans des fichiers.
 	private static final long serialVersionUID = 1L;
 	
+	@Id
 	private String id;
 	private String name;
 	private String email;
