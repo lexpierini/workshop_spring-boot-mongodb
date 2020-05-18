@@ -8,6 +8,7 @@ public class Aula338WorkshopMongoDbApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Aula338WorkshopMongoDbApplication.class, args);
+		
 	}
 
 }
