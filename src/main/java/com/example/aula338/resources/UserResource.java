@@ -1,8 +1,7 @@
 package com.example.aula338.resources;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.aula338.domain.User;
+import com.example.aula338.dto.UserDTO;
 import com.example.aula338.services.UserService;
 
 @RestController
@@ -21,8 +21,9 @@ public class UserResource {
 	private UserService service;
 	
 	@RequestMapping(method = RequestMethod.GET) // Modèle alternatif = @GetMapping
-	public ResponseEntity<List<User>> findAll() { // L'objet ResponseEntity encapsulera la structure nécessaire pour renvoyer les réponses HTTP avec les en-têtes possibles, les erreurs possibles, etc.
+	public ResponseEntity<List<UserDTO>> findAll() { // L'objet ResponseEntity encapsulera la structure nécessaire pour renvoyer les réponses HTTP avec les en-têtes possibles, les erreurs possibles, etc.
 		List<User> list = service.findAll();
-		return ResponseEntity.ok(list);
+		List<UserDTO> listDto = list.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
+		return ResponseEntity.ok(listDto);
 	}
 }
